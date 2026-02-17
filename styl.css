@@ -1,0 +1,60 @@
+* {
+    text-align: center;
+    font-family: Georgia;
+}
+
+header,
+footer {
+    background-color: Tomato;
+    color: MistyRose;
+    padding: 10px;
+}
+
+nav {
+    width: 20%;
+    float: left;
+}
+
+#one,
+#two,
+#three {
+    background-color: #FFAEA5;
+    height: 170px;
+    font-size: 200%;
+}
+
+#one {
+    background-color: MistyRose;
+}
+
+main {
+    background-color: MistyRose;
+    width: 80%;
+    height: 510px;
+    overflow: auto;
+}
+
+#opisy,
+#galeria {
+    display: none;
+}
+
+table {
+    margin: auto;
+    width: 60%;
+    border: 1px dashed Indigo;
+}
+
+select,
+button {
+    margin: 20px;
+}
+
+dt {
+    font-weight: bold;
+    font-style: italic;
+}
+
+dt:hover {
+    font-size: 180%;
+}
