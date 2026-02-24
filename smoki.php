@@ -1,3 +1,14 @@
+<?php
+$condom = mysqli_connect("localhost", "root", "", "smoki");
+if ($condom->errno) {
+    echo "Nie połączono z bazą danych.";
+    exit;
+} else {
+    echo "Połączono z bazą danyh." . "<br>";
+    // wywalić potem z połączenia komunikat o procesie łączenia
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pl">
 
@@ -10,24 +21,37 @@
 
 <body>
     <header>
-<h2>Poznaj smoki!</h2>
+        <h2>Poznaj smoki!</h2>
     </header>
 
     <nav>
-        <article id="one">Baza</article>
-        <article id="two">Opisy</article>
-        <article id="three">Galeria</article>
+        <article onclick="changeOfSectionOne()" id="one">Baza</article>
+        <article onclick="changeOfSectionTwo()" id="two">Opisy</article>
+        <article onclick="changeOfSectionThree()" id="three">Galeria</article>
     </nav>
 
     <main>
         <section id="pierwsza">
             <h3>Baza smoków</h3>
-            <form action="smoki.html" method="post">
-                <select>
+            <form action="smoki.php" method="post">
+                <select name="kraj">
                     <!-- wypelniona lista przez skrypt1 -->
+                    <?php
+                    $zapytanie2 = 'SELECT DISTINCT pochodzenie FROM smok ORDER BY pochodzenie;';
+                    $sqlResult = $condom->query($zapytanie2);
+
+
+                    while ($wiersz = $sqlResult->fetch_assoc()) {
+                        echo "<option>";
+                        echo $wiersz["pochodzenie"];
+                        echo "</option>";
+                    };
+                    ?>
                 </select>
+                <button type="submit">Szukaj</button>
             </form>
-            <button type="submit">Szukaj</button>
+
+            
             <table>
                 <tr>
                     <th>Nazwa</th>
@@ -35,6 +59,22 @@
                     <th>Szerokość</th>
                 </tr>
                 <!-- tu wypelnia skrypt 2 -->
+            <?php
+                if (!empty($_POST["kraj"])) {
+                    $pochodzenie = $_POST["kraj"];
+                    $zapytanie1 = "SELECT nazwa, dlugosc, szerokosc FROM smok WHERE pochodzenie = '$pochodzenie';";
+
+                    $sqlResult2 = $condom->query($zapytanie1);
+
+                    while ($wiersz = $sqlResult2->fetch_assoc()) {
+                        echo "<tr>";
+                        echo $wiersz["nazwa"] . " " . $wiersz["dlugosc"] . " " . $wiersz["szerokosc"];
+                        echo "</tr>";
+                    }
+                };
+
+
+                ?>
             </table>
         </section>
         <section id="opisy">
@@ -76,6 +116,7 @@
     <footer>
         <p>Stronę opracował: niggaWarrior13</p>
     </footer>
+    <script src="skrypt.js"></script>
 </body>
 
 </html>
