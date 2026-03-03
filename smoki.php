@@ -51,15 +51,15 @@ if ($condom->errno) {
                 <button type="submit">Szukaj</button>
             </form>
 
-            
+
             <table>
                 <tr>
                     <th>Nazwa</th>
                     <th>Długość</th>
                     <th>Szerokość</th>
                 </tr>
-                <!-- tu wypelnia skrypt 2 -->
-            <?php
+
+                <?php
                 if (!empty($_POST["kraj"])) {
                     $pochodzenie = $_POST["kraj"];
                     $zapytanie1 = "SELECT nazwa, dlugosc, szerokosc FROM smok WHERE pochodzenie = '$pochodzenie';";
@@ -68,12 +68,12 @@ if ($condom->errno) {
 
                     while ($wiersz = $sqlResult2->fetch_assoc()) {
                         echo "<tr>";
-                        echo $wiersz["nazwa"] . " " . $wiersz["dlugosc"] . " " . $wiersz["szerokosc"];
+                        echo "<td>" . $wiersz["nazwa"] . "</td>";
+                        echo "<td>" . $wiersz["dlugosc"] . "</td>";
+                        echo "<td>" . $wiersz["szerokosc"] . "</td>";
                         echo "</tr>";
                     }
-                };
-
-
+                }
                 ?>
             </table>
         </section>
