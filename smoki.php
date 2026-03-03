@@ -114,7 +114,7 @@ if ($condom->errno) {
     </main>
 
     <footer>
-        <p>Stronę opracował: niggaWarrior13</p>
+        <p>Stronę opracował: skrencikk</p>
     </footer>
     <script src="skrypt.js"></script>
 </body>
